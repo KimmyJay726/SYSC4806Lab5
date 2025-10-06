@@ -12,17 +12,23 @@ public class BuddyInfo {
     private String buddyName;
     private String buddyPhonenumber;
 
+    private String buddyAddress;
+
     public BuddyInfo() {}
 
-    public BuddyInfo(String name, String phoneNumber) {
+    public BuddyInfo(String name, String phoneNumber, String address) {
         this.buddyName = name;
         this.buddyPhonenumber = phoneNumber;
+        this.buddyAddress = address;
     }
     public String getName() {
         return buddyName;
     }
     public String getNumber() {
         return buddyPhonenumber;
+    }
+    public String getAddress() {
+        return buddyAddress;
     }
     public int getId() {
         return id;
