@@ -2,24 +2,73 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="'AddressBook View'"></title>
+    <title th:text="'AddressBook ID: ' + ${addressBook.id}"></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .empty-message {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ffcc00;
+            background-color: #fff8e1;
+            color: #6d6d00;
+        }
+    </style>
 </head>
 <body>
-<h1>Address Book</h1>
-<table border="1">
+<h1 th:text="'Address Book ID: ' + ${addressBook.id}">Address Book ID: </h1>
+
+<!-- Conditional check to display table only if buddies exist -->
+<div th:if="${addressBook.buddyList.isEmpty()}" class="empty-message">
+    This Address Book is currently empty.
+</div>
+
+<table th:unless="${addressBook.buddyList.isEmpty()}">
     <thead>
     <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Phone Number</th>
+        <!-- NEW COLUMN FOR ADDRESS -->
+        <th>Address</th>
     </tr>
     </thead>
     <tbody>
-    <!-- CHECK THIS LINE: The th:each must be correct -->
+    <!-- Iterate over the list of buddies -->
     <tr th:each="buddy : ${addressBook.buddyList}">
         <td th:text="${buddy.id}"></td>
+        <!-- Uses public getter getName() -->
         <td th:text="${buddy.name}"></td>
+        <!-- Uses public getter getNumber() -->
         <td th:text="${buddy.number}"></td>
+        <!-- NEW CELL: Uses public getter getAddress() -->
+        <td th:text="${buddy.address}"></td>
     </tr>
     </tbody>
 </table>

@@ -11,7 +11,6 @@ public class BuddyInfo {
 
     private String buddyName;
     private String buddyPhonenumber;
-
     private String buddyAddress;
 
     public BuddyInfo() {}
@@ -21,6 +20,8 @@ public class BuddyInfo {
         this.buddyPhonenumber = phoneNumber;
         this.buddyAddress = address;
     }
+
+    // --- Getters ---
     public String getName() {
         return buddyName;
     }
@@ -33,6 +34,7 @@ public class BuddyInfo {
     public int getId() {
         return id;
     }
+
     public void setBuddyName(String buddyName) {
         this.buddyName = buddyName;
     }
@@ -41,9 +43,18 @@ public class BuddyInfo {
         this.buddyPhonenumber = buddyPhonenumber;
     }
 
+    // NEW: Setter for the address property, required by Jackson for deserialization
+    public void setBuddyAddress(String buddyAddress) {
+        this.buddyAddress = buddyAddress;
+    }
+
+    public String getBuddyName() { return buddyName; }
+    public String getBuddyPhonenumber() { return buddyPhonenumber; }
+    public String getBuddyAddress() { return buddyAddress; }
+
 
     @Override
     public String toString() {
-        return "Name: " + buddyName + ", Phone Number: " + buddyPhonenumber;
+        return "Name: " + buddyName + ", Phone Number: " + buddyPhonenumber + ", Address: " + buddyAddress;
     }
 }
